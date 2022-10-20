@@ -1,0 +1,81 @@
+interface SumaTotala {
+	public double getSumaTotala();
+
+}
+
+class ContBancar {
+	public static String numarCont;
+	public static double suma;
+
+	public String getNumarCont() {
+		return numarCont;
+	}
+
+	public void setNumarCont(String numarCont) {
+		this.numarCont = numarCont;
+	}
+
+	public double getSuma() {
+		return suma;
+	}
+
+	public void setSuma(double suma) {
+		this.suma = suma;
+	}
+
+}
+
+class Client {
+	static String nume;
+	static String adresa;
+
+	public static ContBancar conturi;
+
+	public Client(ContBancar cont) {
+		this.conturi = cont;
+
+	}
+
+}
+
+class ContLEI extends ContBancar {
+	public void transfer(ContBancar contDestinatie, double suma) {
+		this.setSuma(getSuma() - suma);
+		contDestinatie.setSuma(contDestinatie.getSuma() + suma);
+	}
+
+}
+
+class ContEURO extends ContBancar {
+	int sum;
+
+	public double getDobanda() {
+
+		if (sum >= 500) {
+			return 0.3;
+		} else
+			return 0;
+
+	}
+
+}
+
+public class ProblemaContBancar {
+	public static void main(String[] args) {
+		ContBancar cont = new ContBancar();
+		cont.numarCont = "Darian";
+		cont.suma = 100;
+
+		System.out.println(cont.numarCont);
+
+		System.out.println(cont.suma);
+
+		Client client = new Client(cont);
+		client.nume = "Darian";
+		client.adresa = "str.Tudor Vladimirescu";
+
+		System.out.println("Nume:" + client.nume + "\n" + "Adresa: " + client.adresa);
+
+	}
+
+}
